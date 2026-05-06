@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { LayoutDashboard, Briefcase, User, Mail, ShieldCheck } from 'lucide-react';
 
 export default function Navigation({ activeTab, onTabChange }) {
@@ -19,9 +20,15 @@ export default function Navigation({ activeTab, onTabChange }) {
             className="flex items-center gap-3 text-left"
             aria-label="Go to dashboard"
           >
-            <div className="relative h-9 w-9 overflow-hidden rounded-xl bg-primary shadow-md">
-              <div className="absolute -right-2 top-0 h-4 w-4 rounded-bl-full bg-sky-300/70"></div>
-              <div className="absolute -left-1 bottom-0 h-5 w-5 rounded-tr-full bg-white/25"></div>
+            <div className="overflow-hidden rounded-lg">
+              <Image
+                src="/logo.png"
+                alt="Pacific Cross logo"
+                width={1536}
+                height={1152}
+                className=" object-cover object-center sm:h-20 sm:w-20"
+                priority
+              />
             </div>
             <div>
               <p className="text-[11px] uppercase tracking-[0.18em] text-primary/70">Pacific Cross</p>
