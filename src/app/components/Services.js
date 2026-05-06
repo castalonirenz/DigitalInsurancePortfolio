@@ -1,9 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import { Check, Shield, Globe, BadgeCheck } from 'lucide-react';
 import BrochureDownloads from './BrochureDownloads';
+import RequestWalkthroughModal from './RequestWalkthroughModal';
 
 export default function Services() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState('');
+
   const plans = [
     {
       name: 'Select Plan',
@@ -83,7 +88,14 @@ export default function Services() {
                   ))}
                 </ul>
 
-                <button className="w-full rounded-xl bg-primary px-6 py-3 font-semibold text-white transition hover:bg-accent">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedPlan(plan.name);
+                    setIsModalOpen(true);
+                  }}
+                  className="w-full rounded-xl bg-primary px-6 py-3 font-semibold text-white transition hover:bg-accent"
+                >
                   Request Plan Walkthrough
                 </button>
               </div>
@@ -132,6 +144,12 @@ export default function Services() {
           <BrochureDownloads />
         </div>
       </div>
+
+      <RequestWalkthroughModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        planName={selectedPlan}
+      />
     </div>
   );
 }

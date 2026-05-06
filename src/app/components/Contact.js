@@ -1,8 +1,17 @@
 'use client';
 
+import { useState } from 'react';
 import { Phone, Mail, MessageCircle, Clock } from 'lucide-react';
+import RequestWalkthroughModal from './RequestWalkthroughModal';
 
 export default function Contact() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const smsHref =
+    'sms:+639171853316?body=Hi%20Dan%20Louie,%20I%20would%20like%20to%20request%20a%20plan%20walkthrough.';
+  const emailHref =
+    'mailto:danlouie.decena@pacificcross.com.ph?subject=Request%20Walkthrough&body=Hi%20Dan%20Louie,%0A%0AI%20would%20like%20to%20request%20a%20plan%20walkthrough.%0A%0AThank%20you.';
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50/60 via-white to-surface py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -14,6 +23,13 @@ export default function Contact() {
           <p className="text-xl text-slate-600">
             Ready to review your options? Reach out and let&apos;s find the right plan together.
           </p>
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+            className="mt-6 rounded-xl bg-primary px-6 py-3 font-semibold text-white transition hover:bg-accent"
+          >
+            Request Plan Walkthrough
+          </button>
         </div>
 
         <div className="mb-12 grid gap-8 md:grid-cols-2">
@@ -23,10 +39,10 @@ export default function Contact() {
                 <Phone className="text-white" size={22} />
               </div>
               <div>
-                <h3 className="mb-2 text-xl font-bold text-primary">Phone Call</h3>
-                <p className="mb-4 text-slate-600">Direct support for plan inquiries</p>
+                <h3 className="mb-2 text-xl font-bold text-primary">Contact Number</h3>
+                <p className="mb-4 text-slate-600">Tap to open your message app on mobile</p>
                 <a
-                  href="tel:+639171853316"
+                  href={smsHref}
                   className="text-lg font-semibold text-primary transition hover:text-accent"
                 >
                   0917 185 3316
@@ -44,7 +60,7 @@ export default function Contact() {
                 <h3 className="mb-2 text-xl font-bold text-primary">Email</h3>
                 <p className="mb-4 text-slate-600">Send questions anytime</p>
                 <a
-                  href="mailto:danlouie.decena@pacificcross.com.ph"
+                  href={emailHref}
                   className="break-all text-sm font-semibold text-primary transition hover:text-accent"
                 >
                   danlouie.decena@pacificcross.com.ph
@@ -156,6 +172,12 @@ export default function Contact() {
           </p>
         </div>
       </div>
+
+      <RequestWalkthroughModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        planName="Blue Royale or Select Plan"
+      />
     </div>
   );
 }
