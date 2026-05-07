@@ -26,7 +26,7 @@ export default function Navigation({ activeTab, onTabChange }) {
                 alt="Pacific Cross logo"
                 width={1536}
                 height={1152}
-                className=" object-cover object-center sm:h-20 sm:w-20"
+                className="h-10 w-10 object-cover object-center sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-20 lg:w-20"
                 priority
               />
             </div>
